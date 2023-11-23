@@ -90,11 +90,8 @@ public class Robot {
                 nuevaCoordenadaY = coordenada.y() - 1;
             }
         }
-        if (zona.pertenece(new Coordenada(nuevaCoordenadaX, nuevaCoordenadaY))) {
-            setCoordenada(new Coordenada(nuevaCoordenadaX, nuevaCoordenadaY));
-        } else {
-            throw new IllegalArgumentException("No se puede avanzar.");
-        }
+        setCoordenada(new Coordenada(nuevaCoordenadaX, nuevaCoordenadaY));
+
     }
     public void girarALaDerecha() {
         switch (orientacion) {
