@@ -3,7 +3,7 @@ package org.iesalandalus.programacion.robot.modelo;
 public class ControladorRobot {
     private Robot robot;
 
-    ControladorRobot(Robot robot) {
+    public ControladorRobot(Robot robot) {
         this.robot = new Robot(robot);
     }
 

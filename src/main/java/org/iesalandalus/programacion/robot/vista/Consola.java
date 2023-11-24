@@ -10,7 +10,7 @@ public class Consola {
     private Consola(){
 
     }
-    public void mostrarMenuPrincipal() {
+    public static void mostrarMenuPrincipal() {
         System.out.println("Menú Principal");
         System.out.println();
         System.out.println("Opciones:");
@@ -24,7 +24,7 @@ public class Consola {
         System.out.println();
     }
 
-    public int elegirOpcion() {
+    public static int elegirOpcion() {
         mostrarMenuPrincipal();
         int opcion;
         do {
@@ -34,7 +34,7 @@ public class Consola {
         return opcion;
     }
 
-    public Zona elegirZona(){
+    public static Zona elegirZona(){
         int alto;
         int ancho;
         boolean existeZona;
@@ -127,7 +127,7 @@ public class Consola {
         }
     }
 
-    public void despedirse() {
+    public static void despedirse() {
         System.out.println("Hasta la próxima!");
     }
 }
