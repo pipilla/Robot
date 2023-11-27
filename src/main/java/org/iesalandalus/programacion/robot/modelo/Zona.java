@@ -3,10 +3,10 @@ package org.iesalandalus.programacion.robot.modelo;
 import java.util.Objects;
 
 public record Zona(int ancho, int alto) {
-    public static int ANCHO_MINIMO = 10;
-    public static int ANCHO_MAXIMO = 100;
-    public static int ALTO_MINIMO = 10;
-    public static int ALTO_MAXIMO = 100;
+    public static final int ANCHO_MINIMO = 10;
+    public static final int ANCHO_MAXIMO = 100;
+    public static final int ALTO_MINIMO = 10;
+    public static final int ALTO_MAXIMO = 100;
 
     public Zona {
         validarAncho(ancho);

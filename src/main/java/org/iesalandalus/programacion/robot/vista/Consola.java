@@ -30,7 +30,7 @@ public class Consola {
         do {
             System.out.print("Elige una opción: ");
             opcion = Entrada.entero();
-        } while (opcion > 0 && opcion <= 6);
+        } while (opcion < 1 || opcion > 6);
         return opcion;
     }
 
@@ -53,7 +53,7 @@ public class Consola {
         return new Zona(ancho, alto);
     }
 
-    public void mostrarMenuOrientacion() {
+    public static void mostrarMenuOrientacion() {
         System.out.println("Menú Orientación");
         System.out.println();
         System.out.println("Opciones:");
@@ -69,13 +69,13 @@ public class Consola {
         System.out.println();
     }
 
-    public Orientacion elegirOrientacion() {
+    public static Orientacion elegirOrientacion() {
         mostrarMenuOrientacion();
         int nOrientacion;
         do {
             System.out.print("Elige una orientación: ");
             nOrientacion = Entrada.entero();
-        } while (nOrientacion > 0 && nOrientacion <= 8);
+        } while (nOrientacion < 1 || nOrientacion > 8);
         Orientacion orientacion = Orientacion.NORTE;
         switch (nOrientacion) {
             case 1 -> {
@@ -106,7 +106,7 @@ public class Consola {
         return orientacion;
     }
 
-    public Coordenada elegirCoordenada() {
+    public static Coordenada elegirCoordenada() {
         System.out.print("Dime la componente x: ");
         int x = Entrada.entero();
         System.out.print("Dime la componente y: ");
@@ -114,12 +114,12 @@ public class Consola {
         return new Coordenada(x, y);
     }
 
-    public char elegirComando() {
+    public static char elegirComando() {
         System.out.print("Elige el comando a ejecutar: ");
         return Entrada.caracter();
     }
 
-    public void mostrarRobot(ControladorRobot controladorRobot) {
+    public static void mostrarRobot(ControladorRobot controladorRobot) {
         if (controladorRobot == null) {
             System.out.println("El robot es nulo");
         } else {

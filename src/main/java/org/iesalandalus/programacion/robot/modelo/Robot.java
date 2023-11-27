@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.robot.modelo;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.Objects;
 
 public class Robot {
@@ -20,15 +21,16 @@ public class Robot {
 
     public Robot(Zona zona, Orientacion orientacion) {
         this(zona);
-        this.orientacion = orientacion;
+        setOrientacion(orientacion);
     }
 
     public Robot(Zona zona, Orientacion orientacion, Coordenada coordenada) {
         this(zona, orientacion);
-        this.coordenada = coordenada;
+        setCoordenada(coordenada);
     }
 
     public Robot(Robot robot) {
+        Objects.requireNonNull(robot, "El robot no puede ser nulo.");
         coordenada = robot.getCoordenada();
         orientacion = robot.getOrientacion();
         zona = robot.getZona();
@@ -39,7 +41,7 @@ public class Robot {
     }
 
     public void setZona(Zona zona) {
-        Objects.requireNonNull(zona, "Zona no puede ser nulo.");
+        Objects.requireNonNull(zona, "La zona no puede ser nula.");
         this.zona = zona;
     }
 
@@ -48,7 +50,7 @@ public class Robot {
     }
 
     public void setOrientacion(Orientacion orientacion) {
-        Objects.requireNonNull(orientacion, "Orientacion no puede ser nulo.");
+        Objects.requireNonNull(orientacion, "La orientación no puede ser nula.");
         this.orientacion = orientacion;
     }
 
@@ -57,7 +59,7 @@ public class Robot {
     }
 
     public void setCoordenada(Coordenada coordenada) {
-        Objects.requireNonNull(coordenada, "Coordenada no puede ser nulo.");
+        Objects.requireNonNull(coordenada, "La coordenada no puede ser nula.");
         if (zona.pertenece(coordenada)) {
             this.coordenada = coordenada;
         } else {
@@ -65,33 +67,36 @@ public class Robot {
         }
     }
 
-    public void avanzar() {
+    public void avanzar() throws OperationNotSupportedException {
         int nuevaCoordenadaX = 0;
         int nuevaCoordenadaY = 0;
         switch (orientacion) {
-            case SUR -> nuevaCoordenadaY = coordenada.y() - 1;
+            case SUR -> nuevaCoordenadaY--;
             case SURESTE -> {
-                nuevaCoordenadaX = coordenada.x() + 1;
-                nuevaCoordenadaY = coordenada.y() - 1;
+                nuevaCoordenadaX++;
+                nuevaCoordenadaY--;
             }
-            case ESTE -> nuevaCoordenadaX = coordenada.x() + 1;
+            case ESTE -> nuevaCoordenadaX++;
             case NORESTE -> {
-                nuevaCoordenadaX = coordenada.x() + 1;
-                nuevaCoordenadaY = coordenada.y() + 1;
+                nuevaCoordenadaX++;
+                nuevaCoordenadaY++;
             }
-            case NORTE -> nuevaCoordenadaY = coordenada.y() + 1;
+            case NORTE -> nuevaCoordenadaY++;
             case NOROESTE -> {
-                nuevaCoordenadaX = coordenada.x() - 1;
-                nuevaCoordenadaY = coordenada.y() + 1;
+                nuevaCoordenadaX--;
+                nuevaCoordenadaY++;
             }
-            case OESTE -> nuevaCoordenadaX = coordenada.x() - 1;
+            case OESTE -> nuevaCoordenadaX--;
             case SUROESTE -> {
-                nuevaCoordenadaX = coordenada.x() - 1;
-                nuevaCoordenadaY = coordenada.y() - 1;
+                nuevaCoordenadaX--;
+                nuevaCoordenadaY--;
             }
         }
-        setCoordenada(new Coordenada(nuevaCoordenadaX, nuevaCoordenadaY));
-
+        try {
+            setCoordenada(new Coordenada(nuevaCoordenadaX + coordenada.x(), nuevaCoordenadaY + coordenada.y()));
+        } catch (IllegalArgumentException e) {
+            throw new OperationNotSupportedException("No se puede avanzar, ya que se sale de la zona.");
+        }
     }
     public void girarALaDerecha() {
         switch (orientacion) {
