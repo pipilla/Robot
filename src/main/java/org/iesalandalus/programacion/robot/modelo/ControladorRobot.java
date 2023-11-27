@@ -20,6 +20,7 @@ public class ControladorRobot {
             case 'A', 'a' -> robot.avanzar();
             case 'D', 'd' -> robot.girarALaDerecha();
             case 'I', 'i' -> robot.girarALaIzquierda();
+            default -> throw new OperationNotSupportedException("Comando desconocido.");
         }
     }
 }
