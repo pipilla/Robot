@@ -9,7 +9,7 @@ import javax.naming.OperationNotSupportedException;
 
 public class Main {
     private static ControladorRobot controladorRobot;
-    private static void ejecutarOpcion(int opcion) throws OperationNotSupportedException {
+    private static void ejecutarOpcion(int opcion) {
         switch (opcion) {
             case 1 -> controlarRobotDefecto();
             case 2 -> controlarRobotZona();
@@ -19,38 +19,49 @@ public class Main {
             case 6 -> Consola.despedirse();
         }
     }
-    private static void controlarRobotDefecto() throws OperationNotSupportedException {
+    private static void controlarRobotDefecto() {
         controladorRobot = new ControladorRobot(new Robot());
         Consola.mostrarRobot(controladorRobot);
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    private static void controlarRobotZona() throws OperationNotSupportedException {
+    private static void controlarRobotZona() {
         controladorRobot = new ControladorRobot(new Robot(Consola.elegirZona()));
         Consola.mostrarRobot(controladorRobot);
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    private static void controlarRobotZonaOrientacion() throws OperationNotSupportedException {
+    private static void controlarRobotZonaOrientacion() {
         controladorRobot = new ControladorRobot(new Robot(Consola.elegirZona(), Consola.elegirOrientacion()));
         Consola.mostrarRobot(controladorRobot);
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    private static void controlarRobotZonaOrientacionCoordenada() throws OperationNotSupportedException {
+    private static void controlarRobotZonaOrientacionCoordenada() {
         controladorRobot = new ControladorRobot(new Robot(Consola.elegirZona(), Consola.elegirOrientacion(), Consola.elegirCoordenada()));
         Consola.mostrarRobot(controladorRobot);
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    private static void ejecutarComando() throws OperationNotSupportedException {
-        controladorRobot.ejecutar(Consola.elegirComando());
+    private static void ejecutarComando() {
+        if (controladorRobot == null) {
+            try {
+                controladorRobot.ejecutar(Consola.elegirComando());
+            } catch (OperationNotSupportedException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("No hay ningún robot creado.");
+        }
+
         Consola.mostrarRobot(controladorRobot);
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    public static void main(String[] args) throws OperationNotSupportedException {
+    public static void main(String[] args) {
         ejecutarOpcion(Consola.elegirOpcion());
     }
+
+    // Dudas, al ejecutar el programa se lanzan excepciones y termina el programa, preguntar si pasa lo mismo en su programa.
 
 }
