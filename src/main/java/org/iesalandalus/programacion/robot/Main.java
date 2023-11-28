@@ -44,11 +44,11 @@ public class Main {
     }
 
     private static void ejecutarComando() {
-        if (controladorRobot == null) {
+        if (controladorRobot != null) {
             try {
                 controladorRobot.ejecutar(Consola.elegirComando());
             } catch (OperationNotSupportedException e) {
-                System.out.println(e.getMessage());
+                System.out.println("ERROR: " + e.getMessage());
             }
         } else {
             System.out.println("No hay ningún robot creado.");
