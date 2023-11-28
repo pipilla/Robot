@@ -48,6 +48,7 @@ public class Consola {
                 existeZona = true;
             } catch (IllegalArgumentException e) {
                 existeZona = false;
+                System.out.println("ERROR: " + e.getMessage());
             }
         } while (!existeZona);
         return new Zona(ancho, alto);
