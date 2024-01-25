@@ -2,6 +2,8 @@ package org.iesalandalus.programacion.robot.modelo;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ControladorRobot {
     private Robot robot;
