@@ -61,7 +61,7 @@ public class Robot {
     public void setCoordenada(Coordenada coordenada) {
         Objects.requireNonNull(coordenada, "La coordenada no puede ser nula.");
         if (Zona.esObstaculo(zona.obstaculos(), coordenada)) {
-            throw new IllegalArgumentException("La coordenada tiene un obstáculo.");
+            throw new IllegalArgumentException(String.format("Hay un obstáculo en %s.", coordenada));
         } else if (zona.pertenece(coordenada)) {
             this.coordenada = coordenada;
         } else {
@@ -97,7 +97,7 @@ public class Robot {
         try {
             setCoordenada(new Coordenada(nuevaCoordenadaX + coordenada.x(), nuevaCoordenadaY + coordenada.y()));
         } catch (IllegalArgumentException e) {
-            throw new OperationNotSupportedException("No se puede avanzar, ya que se sale de la zona o hay un obstáculo.");
+            throw new OperationNotSupportedException(e.getMessage());
         }
     }
     public void girarALaDerecha() {

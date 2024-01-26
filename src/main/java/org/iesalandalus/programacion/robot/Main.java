@@ -16,7 +16,8 @@ public class Main {
             case 3 -> controlarRobotZonaOrientacion();
             case 4 -> controlarRobotZonaOrientacionCoordenada();
             case 5 -> ejecutarComando();
-            case 6 -> Consola.despedirse();
+            case 6 -> ejecutarCadenaComandos();
+            case 7 -> Consola.despedirse();
         }
     }
     private static void controlarRobotDefecto() {
@@ -47,6 +48,21 @@ public class Main {
         if (controladorRobot != null) {
             try {
                 controladorRobot.ejecutar(Consola.elegirComando());
+            } catch (OperationNotSupportedException e) {
+                System.out.println("ERROR: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No hay ningún robot creado.");
+        }
+
+        Consola.mostrarRobot(controladorRobot);
+        ejecutarOpcion(Consola.elegirOpcion());
+    }
+
+    private static void ejecutarCadenaComandos() {
+        if (controladorRobot != null) {
+            try {
+                controladorRobot.ejecutarCadena(Consola.elegirSecuenciaComandos());
             } catch (OperationNotSupportedException e) {
                 System.out.println("ERROR: " + e.getMessage());
             }

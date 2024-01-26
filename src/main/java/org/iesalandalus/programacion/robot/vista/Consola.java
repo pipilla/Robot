@@ -20,7 +20,8 @@ public class Consola {
         System.out.println("3. Controlar un robot indicando su zona y orientación");
         System.out.println("4. Controlar un robot indicando su zona, orientación y coordenada inicial");
         System.out.println("5. Ejecutar comando");
-        System.out.println("6. Salir");
+        System.out.println("6. Ejecutar secuencia de comandos");
+        System.out.println("7. Salir");
         System.out.println();
     }
 
@@ -30,7 +31,7 @@ public class Consola {
         do {
             System.out.print("Elige una opción: ");
             opcion = Entrada.entero();
-        } while (opcion < 1 || opcion > 6);
+        } while (opcion < 1 || opcion > 7);
         return opcion;
     }
 
@@ -118,6 +119,11 @@ public class Consola {
     public static char elegirComando() {
         System.out.print("Elige el comando a ejecutar: ");
         return Entrada.caracter();
+    }
+
+    public static String elegirSecuenciaComandos() {
+        System.out.print("Elige la secuencia de  comandos a ejecutar: ");
+        return Entrada.cadena();
     }
 
     public static void mostrarRobot(ControladorRobot controladorRobot) {

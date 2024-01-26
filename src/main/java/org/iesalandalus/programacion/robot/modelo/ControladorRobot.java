@@ -25,4 +25,14 @@ public class ControladorRobot {
             default -> throw new OperationNotSupportedException("Comando desconocido.");
         }
     }
+
+    public void ejecutarCadena(String comando) throws OperationNotSupportedException {
+        if (comando.matches("[AaDdIi]+")) {
+            for (char c : comando.toCharArray()) {
+                ejecutar(c);
+            }
+        } else {
+            throw new OperationNotSupportedException("Comando desconocido.");
+        }
+    }
 }
