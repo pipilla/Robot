@@ -78,6 +78,4 @@ public class Main {
         ejecutarOpcion(Consola.elegirOpcion());
     }
 
-    // Dudas, al ejecutar el programa se lanzan excepciones y termina el programa, preguntar si pasa lo mismo en su programa.
-
 }

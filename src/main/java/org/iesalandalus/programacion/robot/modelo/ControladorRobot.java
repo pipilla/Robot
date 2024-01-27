@@ -29,7 +29,12 @@ public class ControladorRobot {
     public void ejecutarCadena(String comando) throws OperationNotSupportedException {
         if (comando.matches("[AaDdIi]+")) {
             for (char c : comando.toCharArray()) {
-                ejecutar(c);
+                try {
+                    ejecutar(c);
+                } catch (OperationNotSupportedException e) {
+                    System.out.println(e.getMessage());
+                }
+
             }
         } else {
             throw new OperationNotSupportedException("Comando desconocido.");
